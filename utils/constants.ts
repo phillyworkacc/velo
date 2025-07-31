@@ -1,4 +1,4 @@
-export const appUrl = 'http://localhost:3000'
+export const appUrl = 'https://veloapp.online'
 export const userDefaultImage = appUrl + '/assets/user-default.jpg'
 export const editorDefaultImage = appUrl + '/assets/editor-default.png'
 
