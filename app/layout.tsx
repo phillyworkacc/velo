@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     "social media agency software"
   ],
   openGraph: {
-    title: "Client Dashboard | [Your SMMA Name]",
+    title: "Velo",
     description: "Easily track posts, review content, and collaborate with your social media team — all in one place.",
     url: "https://veloapp.online",
-    siteName: "[Your SMMA Name]",
+    siteName: "Velo",
     images: [
       {
         url: "https://veloapp.online/logo/logo.png", // Replace with actual image
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Client Dashboard | [Your SMMA Name]",
+    title: "Velo",
     description: "Your all-in-one portal for staying updated and managing social content.",
     images: ["https://veloapp.online/og-image.png"],
   },
