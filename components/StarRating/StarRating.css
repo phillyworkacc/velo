@@ -1,0 +1,11 @@
+.star-rating {
+   width: fit-content;
+   height: fit-content;
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+
+.star-rating .star {
+   cursor: pointer;
+}

@@ -1,0 +1,59 @@
+.testimonials-section {
+   max-width: 900px;
+   margin: 4rem auto;
+   padding: 0 1rem;
+   text-align: center;
+   color: #333;
+   user-select: none;
+}
+
+.testimonials-section h2 {
+   font-size: 2rem;
+   margin-bottom: 2rem;
+   color: #2054FF;
+}
+
+.testimonial-list {
+   display: flex;
+   gap: 2rem;
+   justify-content: center;
+   flex-wrap: wrap;
+   margin-bottom: 3rem;
+}
+
+.testimonial-card {
+   background: #f4f6ff;
+   border-radius: 12px;
+   padding: 1.5rem 2rem;
+   box-shadow: 0 2px 8px rgba(13, 56, 173, 0.15);
+   max-width: 400px;
+   font-style: italic;
+   color: #0027a8;
+}
+
+.testimonial-card footer {
+   margin-top: 0.2rem;
+   font-style: normal;
+   font-weight: 600;
+   color: #0027a8;
+}
+
+.company-logos {
+   display: flex;
+   gap: 3rem;
+   justify-content: center;
+   flex-wrap: wrap;
+   align-items: center;
+}
+
+.company-logo {
+   height: 40px;
+   filter: grayscale(100%);
+   opacity: 0.6;
+   transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.company-logo:hover {
+   filter: none;
+   opacity: 1;
+}

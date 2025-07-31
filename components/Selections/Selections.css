@@ -1,0 +1,25 @@
+.selections {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   gap: 5px;
+}
+
+.selections .selection {
+   width: fit-content;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 0.6rem;
+   padding: 6px 10px;
+   cursor: pointer;
+   background-color: white;
+   border: 1px solid #ececec;
+   border-radius: 8px;
+}
+
+.selections .selection.selected {
+   border: 2px solid #2054FF;
+   color: #2054FF !important;
+   font-weight: 700;
+}

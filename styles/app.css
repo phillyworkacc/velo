@@ -1,0 +1,107 @@
+body {
+   background-color: #cad5ff !important;
+}
+
+.app {
+   background-color: #cad5ff !important;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   overflow: hidden;
+}
+
+.app .app-content {
+   flex-grow: 1;
+   height: 100vh;
+   padding: 10px;
+   overflow-y: scroll;
+   overflow-x: hidden;
+   position: relative;
+}
+
+.app .main-section {
+   width: 100vw;
+   height: 100vh;
+   padding-bottom: 10px;
+   padding-right: 10px;
+   display: flex;
+   flex-direction: column;
+}
+
+.app .main-section .main-title {
+   width: 100%;
+}
+
+.app .main-section .main-title .menu-mobile {
+   display: none;
+}
+
+@media screen and (max-width: 800px) {
+   .app .main-section {
+      padding-bottom: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+      padding-left: 10px;
+   }
+   .app .main-section .main-title .menu-mobile {
+      display: flex;
+   }
+}
+
+
+.app .main-section .main-box {
+   width: 100%;
+   height: 100%;
+   padding: 30px;
+   border-radius: 20px;
+   background-color: #ffffff;
+   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.096);
+   overflow-y: scroll;
+   overflow-x: hidden;
+}
+
+.email-item {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 7px;
+   cursor: pointer;
+   padding: 10px;
+   border-radius: 8px;
+}
+
+.email-item:hover {
+   background-color: #f1f1f1;
+}
+
+.email-item .icon:last-child { opacity: 0; }
+.email-item:hover .icon:last-child { opacity: 1; }
+
+.email-item .icon {
+   height: 100%;
+   aspect-ratio: 1;
+}
+
+.client-comment {
+   width: fit-content;
+   max-width: 350px;
+   border-radius: 10px;
+   background: #ebefff;
+   color: black;
+   margin-bottom: 10px;
+   padding: 10px;
+   display: flex;
+   flex-direction: column;
+   position: relative;
+}
+
+.client-comment .icon {
+   position: absolute;
+   top: -10px; right: -10px;
+   width: fit-content;
+   aspect-ratio: 1;
+   border-radius: 100%;
+   background-color: #7b95ff;
+   padding: 5px;
+}

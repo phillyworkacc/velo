@@ -1,0 +1,82 @@
+.card {
+   width: 100%;
+   max-width: 300px;
+   background-color: white;
+   border-radius: 10px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.card.border-card {
+   width: 100%;
+   max-width: 300px;
+   border: 1px solid #d3d3d3;
+   background-color: white;
+   border-radius: 10px;
+   box-shadow: none;
+}
+
+.card.analytics-card {
+   border: 1px solid #ebebeb;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+   background-color: white;
+}
+
+.card.hover-animate:hover {
+   scale: 1.03;
+   background: #f4f6ff;
+   border-color: #2054FF;
+}
+
+.card.hover-animate:active {
+   scale: 0.97;
+}
+
+.card.full { max-width: 100%; }
+
+.card.pd-05 { padding-top: 5px; padding-bottom: 5px; }
+.card.pd-1 { padding-top: 10px; padding-bottom: 10px; }
+.card.pd-15 { padding-top: 15px; padding-bottom: 15px; }
+.card.pd-2 { padding-top: 20px; padding-bottom: 20px; }
+.card.pd-3 { padding-top: 30px; padding-bottom: 30px; }
+.card.pd-4 { padding-top: 40px; padding-bottom: 40px; }
+.card.pd-5 { padding-top: 50px; padding-bottom: 50px; }
+.card.pd-6 { padding-top: 60px; padding-bottom: 60px; }
+.card.pd-7 { padding-top: 70px; padding-bottom: 70px; }
+.card.pd-8 { padding-top: 80px; padding-bottom: 80px; }
+.card.pd-9 { padding-top: 90px; padding-bottom: 90px; }
+
+.card.pdx-05 { padding-left: 5px; padding-right: 5px; }
+.card.pdx-1 { padding-left: 10px; padding-right: 10px; }
+.card.pdx-15 { padding-left: 15px; padding-right: 15px; }
+.card.pdx-2 { padding-left: 20px; padding-right: 20px; }
+.card.pdx-3 { padding-left: 30px; padding-right: 30px; }
+.card.pdx-4 { padding-left: 40px; padding-right: 40px; }
+.card.pdx-5 { padding-left: 50px; padding-right: 50px; }
+.card.pdx-6 { padding-left: 60px; padding-right: 60px; }
+.card.pdx-7 { padding-left: 70px; padding-right: 70px; }
+.card.pdx-8 { padding-left: 80px; padding-right: 80px; }
+.card.pdx-9 { padding-left: 90px; padding-right: 90px; }
+
+.card.mt-05 { margin-top: 5px;  }
+.card.mt-1 { margin-top: 10px;  }
+.card.mt-15 { margin-top: 15px; }
+.card.mt-2 { margin-top: 20px;  }
+.card.mt-3 { margin-top: 30px;  }
+.card.mt-4 { margin-top: 40px;  }
+.card.mt-5 { margin-top: 50px;  }
+.card.mt-6 { margin-top: 60px;  }
+.card.mt-7 { margin-top: 70px;  }
+.card.mt-8 { margin-top: 80px;  }
+.card.mt-9 { margin-top: 90px;  }
+
+.card.mb-05 { margin-bottom: 5px;  }
+.card.mb-1 { margin-bottom: 10px;  }
+.card.mb-15 { margin-bottom: 15px; }
+.card.mb-2 { margin-bottom: 20px;  }
+.card.mb-3 { margin-bottom: 30px;  }
+.card.mb-4 { margin-bottom: 40px;  }
+.card.mb-5 { margin-bottom: 50px;  }
+.card.mb-6 { margin-bottom: 60px;  }
+.card.mb-7 { margin-bottom: 70px;  }
+.card.mb-8 { margin-bottom: 80px;  }
+.card.mb-9 { margin-bottom: 90px;  }

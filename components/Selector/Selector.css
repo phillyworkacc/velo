@@ -1,0 +1,21 @@
+.selections {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   gap: 15px;
+   margin-bottom: 10px;
+}
+
+.selections .selector-option {
+   padding: 10px 15px;
+   cursor: pointer;
+   border: 3px solid white;
+   color: #000;
+   font-size: 1.05rem;
+}
+
+.selections .selector-option.selected {
+   font-weight: 700;
+   color: #2054FF;
+   border-bottom: 3px solid #2054FF;
+}
