@@ -19,7 +19,7 @@ export default function EditorTasks ({ editorTasks }: { editorTasks: EditorTasks
          acc[date].push(editorTask);
       }
       return acc;
-   }, {})
+   }, {}).toReversed()
 
    if (isLoadingUser) return <LoadingPage />;
    if (user == null) return <LoadingPage />;
@@ -63,6 +63,7 @@ function EditorTasksLister ({ editorTasks }: { editorTasks: EditorTasksDateObjec
                </Card>
             ))}
          </div>
+         <div className="text-m mb-15" />
       </div>))}
    </div>);
 }
