@@ -56,7 +56,7 @@ function EditorTasksLister ({ editorTasks }: { editorTasks: EditorTasksDateObjec
             {editorTasks[dateKey].map((editorTask, index) => (
                <Card key={index} className="pd-2 pdx-2" maxWidth="500px" cursor onClick={() => router.push(`/admin/editor-task/${editorTask.taskId}`)} hoverAnimate analyticsCard>
                   <div className="text-s bold-700">{editorTask.title}</div>
-                  <div className="text-xxs grey-4 full mt-05">{editorTask.task.substring(0,200)}...</div>
+                  <div className="text-xxs grey-4 full mt-05" style={{wordBreak:"break-all"}}>{editorTask.task.substring(0,200)}...</div>
                   <div className="text-xxs full mt-1 accent-color bold-600 dfb align-center gap-5">
                      <Notebook size={16} /> Editor Task
                   </div>
