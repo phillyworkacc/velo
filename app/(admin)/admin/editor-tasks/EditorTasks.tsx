@@ -19,7 +19,7 @@ export default function EditorTasks ({ editorTasks }: { editorTasks: EditorTasks
          acc[date].push(editorTask);
       }
       return acc;
-   }, {}).toReversed()
+   }, {})
 
    if (isLoadingUser) return <LoadingPage />;
    if (user == null) return <LoadingPage />;
@@ -47,7 +47,7 @@ type EditorTasksDateObject = {
 
 function EditorTasksLister ({ editorTasks }: { editorTasks: EditorTasksDateObject }) {
    const router = useRouter();
-   const dateKeys = Object.keys(editorTasks);
+   const dateKeys = Object.keys(editorTasks).toReversed();
 
    return (<div className="text-s dfb column gap-10 w-full">
       {dateKeys.map((dateKey, index) => (<div key={index}>
