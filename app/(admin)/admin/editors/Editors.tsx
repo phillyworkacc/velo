@@ -8,14 +8,28 @@ import { formatMilliseconds } from "@/utils/date";
 import { redirect, useRouter } from "next/navigation";
 import { CustomIcon } from "@/components/Icons/Icon";
 import { CircleCheck } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getAllEditorsDetails } from "@/app/actions/adminPageActions";
 
-export default function Editors ({ editors }: { editors: EditorDetails[] }) {
+export default function Editors () {
    const { user, isLoadingUser } = useUser();
+   const [editors, setEditors] = useState<EditorDetails[] | null>(null);
+
+   useEffect(() => {
+      if (user?.role == "admin") {
+         const load = async () => {
+            const fetchEditors = await getAllEditorsDetails();
+            setEditors(fetchEditors);
+         }
+         load();
+      }
+   }, [isLoadingUser])
 
    if (isLoadingUser) return <LoadingPage />;
    if (user == null) return <LoadingPage />;
    if (user.role == "client") redirect('/dashboard');
    if (user.role == "editor") redirect('/editor');
+   if (editors == null) return <LoadingPage />;
    
    return (
       <AppWrapper>

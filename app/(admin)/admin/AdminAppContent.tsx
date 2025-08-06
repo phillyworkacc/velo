@@ -7,27 +7,32 @@ import AwaitButton from "@/components/AwaitButton/AwaitButton";
 import { useUser } from "@/hooks/useUser";
 import { FilePlus, NotebookPen, UserPlus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { CSSProperties } from "react";
+import { CSSProperties, useEffect, useState } from "react";
 import { numberFormatting } from "@/utils/utils";
+import { adminAppContentAnalysis } from "@/app/actions/adminPageActions";
 
-type AdminAppContentProps = {
-   analytics: {
-      noOfAdmins: number;
-      noOfClients: number;
-      noOfEditors: number;
-   }
-}
-
-export default function AdminAppContent ({ analytics }: AdminAppContentProps) {
+export default function AdminAppContent () {
    const { user, isLoadingUser } = useUser();
    const router = useRouter();
    const cardStyle: CSSProperties = {
       display: 'flex', flexDirection: 'column', alignItems: 'center',
       justifyContent: 'center', padding: '20px'
    }
+   const [analytics, setAnalytics] = useState<AdminAppContentAnalytics | null>(null);
+
+   useEffect(() => {
+      if (user?.role == "admin") {
+         const load = async () => {
+            const fetchAnalytics = await adminAppContentAnalysis();
+            setAnalytics(fetchAnalytics);
+         }
+         load();
+      }
+   }, [isLoadingUser])
    
    if (isLoadingUser) return <LoadingPage />;
    if (user == null) return <LoadingPage />;
+   if (analytics == null) return <LoadingPage />;
 
    return (
       <AppWrapper>

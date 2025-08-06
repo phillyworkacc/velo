@@ -15,8 +15,8 @@ export async function completeTask (taskId: string, userid: string, googleDriveL
                taskId,
                googleDriveLink,
                date: Date.now()
-            }, 
-            ...editor.tasksCompleted
+            },
+            ...editor.tasksCompleted.filter((taskComp: EditorTaskStatus) => taskComp.taskId !== taskId)
          ]
          await editor.save();
          return true;

@@ -3,31 +3,56 @@ import "@/styles/app.css"
 import AppWrapper from "@/components/AppWrapper/AppWrapper"
 import AwaitButton from "@/components/AwaitButton/AwaitButton"
 import LoadingPage from "@/components/LoadingPage/LoadingPage"
-import { CircleCheck, Notebook, Trash2 } from "lucide-react"
+import { CircleCheck, CircleX, Edit, Notebook } from "lucide-react"
 import { formatMilliseconds } from "@/utils/date"
 import { CustomIcon } from "@/components/Icons/Icon"
 import { useUser } from "@/hooks/useUser"
-import { redirect, useRouter } from "next/navigation"
+import { redirect } from "next/navigation"
 import { completeTask } from "@/app/actions/editor"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { toast } from "sonner"
+import { checkIfEditorHasCompletedTask, getEditorSubmissionForTask, getEditorTask } from "@/app/actions/editorTaskActions"
+import Link from "next/link"
 
-export default function EditorTaskPage ({ editorTask, hasEditorCompleted }: { editorTask: EditorTasks, hasEditorCompleted: boolean }) {
+export default function EditorTaskPage ({ editorTaskId }: { editorTaskId: string }) {
    const { user, isLoadingUser } = useUser();
-   const router = useRouter();
-   const [googleDriveLink, setGoogleDriveLink] = useState('')
+   const [googleDriveLink, setGoogleDriveLink] = useState('');
+   const [editorTask, setEditorTask] = useState<EditorTasks | null>(null);
+   const [originalHasEditorCompleted, setOriginalHasEditorCompleted] = useState<boolean | null>(null);
+   const [hasEditorCompleted, setHasEditorCompleted] = useState<boolean | null>(null);
+   const [editorTaskSubmission, setEditorTaskSubmission] = useState<EditorTaskStatus | null>(null);
+
+   useEffect(() => {
+      if (user) {
+         const load = async () => {
+            const fetchEditorTask = await getEditorTask(editorTaskId);
+            setEditorTask(fetchEditorTask);
+   
+            const fetchHasEditorCompleted = await checkIfEditorHasCompletedTask(user.userid, editorTaskId);
+            setHasEditorCompleted(fetchHasEditorCompleted);
+            setOriginalHasEditorCompleted(fetchHasEditorCompleted);
+
+            const fetchEditorSubmission = await getEditorSubmissionForTask(user.userid, editorTaskId);
+            setEditorTaskSubmission(fetchEditorSubmission);
+         }
+         load();
+      }
+   }, [isLoadingUser]);
 
    if (isLoadingUser) return <LoadingPage />;
    if (user == null) return <LoadingPage />;
    if (user.role == "admin") redirect("/admin");
    if (user.role == "client") redirect("/dashboard");
+   if (editorTask == null) return <LoadingPage />;
+   if (hasEditorCompleted == null) return <LoadingPage />;
+   if (editorTaskSubmission == null) return <LoadingPage />;
 
    const completeTaskBtn = async () => {
       if (!user) return;
       const completed = await completeTask(editorTask.taskId, user.userid, googleDriveLink);
       if (completed) {
          toast.success(`Completed Task - ${editorTask.title}`);
-         router.refresh();
+         setHasEditorCompleted(true);
       } else {
          toast.error(`Failed to complete task`);
       }
@@ -53,9 +78,21 @@ export default function EditorTaskPage ({ editorTask, hasEditorCompleted }: { ed
          </div>
 
          {(hasEditorCompleted) ? (<>
-            <div className="text-m bold-700 dfb align-center gap-5" style={{color:"#1b8500ff"}}>
-               <CircleCheck size={25} strokeWidth={2.5} color="#1b8500ff" />
+            <div className="text-xs bold-700 dfb align-center gap-5" style={{color:"#1b8500ff"}}>
+               <CircleCheck size={20} strokeWidth={2.5} color="#1b8500ff" />
                <span>Task Completed</span>
+            </div>
+            <div className="text-xxs pd-1 grey-5">You can click below to either edit and change your submission for this task or view you cloud folder containing your submission</div>
+            <div className="text-s dfb align-center gap-7">
+               <Link href={editorTaskSubmission.googleDriveLink} target="_blank">
+                  <button className="xxxs grey pd-1 pdx-2">
+                     <CustomIcon url="/assets/google-drive.png" size={17} />
+                     View your submission
+                  </button>
+               </Link>
+               <button className="xxxs grey pd-1 pdx-2" onClick={() => setHasEditorCompleted(false)}>
+                  <Edit size={15} /> Edit Submission
+               </button>
             </div>
          </>) : (<>
             <div className="text-l pd-1 bold-700 mt-4">Complete Task</div>
@@ -73,10 +110,13 @@ export default function EditorTaskPage ({ editorTask, hasEditorCompleted }: { ed
                         onChange={(e) => setGoogleDriveLink(e.target.value)} 
                      />
                   </div>
-                  <div className="text-s dfb column">
+                  <div className="text-s dfb column gap-5">
                      <AwaitButton className="xxs full pd-1" onClick={completeTaskBtn}>
                         <CircleCheck size={15} /> Complete Task
                      </AwaitButton>
+                     {(originalHasEditorCompleted) && (<button className="xxs full pd-1 outline-black" onClick={() => setHasEditorCompleted(true)}>
+                        <CircleX size={15} /> Cancel
+                     </button>)}
                   </div>
                </div>
             </div>

@@ -109,3 +109,16 @@ type EditorDetails = {
    tasksApproved: Omit<EditorTaskStatus, 'googleDriveLink'>[];
    payments: EditorPayments[];
 }
+
+type AdminAppContentAnalytics = {
+   noOfAdmins: number;
+   noOfClients: number;
+   noOfEditors: number;
+}
+
+type TaskCompletedDetail = {
+   taskId: string;
+   taskName: string;
+   googleDriveLink: string;
+   date: number;
+}

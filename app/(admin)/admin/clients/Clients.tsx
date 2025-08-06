@@ -2,20 +2,34 @@
 import "@/styles/app.css"
 import Card from "@/components/Card/Card";
 import LoadingPage from "@/components/LoadingPage/LoadingPage";
+import AppWrapper from "@/components/AppWrapper/AppWrapper";
 import { useUser } from "@/hooks/useUser";
 import { formatMilliseconds } from "@/utils/date";
 import { redirect, useRouter } from "next/navigation";
 import { CustomIcon } from "@/components/Icons/Icon";
-import AppWrapper from "@/components/AppWrapper/AppWrapper";
 import { BadgeCheck } from "lucide-react";
+import { useEffect, useState } from "react";
+import { getAllClientsDetails } from "@/app/actions/adminPageActions";
 
-export default function Clients ({ clients }: { clients: ClientDetails[] }) {
+export default function Clients () {
    const { user, isLoadingUser } = useUser();
+   const [clients, setClients] = useState<ClientDetails[] | null>(null);
+
+   useEffect(() => {
+      if (user?.role == "admin") {
+         const load = async () => {
+            const fetchClients = await getAllClientsDetails();
+            setClients(fetchClients);
+         }
+         load();
+      }
+   }, [isLoadingUser])
 
    if (isLoadingUser) return <LoadingPage />;
    if (user == null) return <LoadingPage />;
    if (user.role == "client") redirect('/dashboard');
    if (user.role == "editor") redirect('/editor');
+   if (clients == null) return <LoadingPage />;
    
    return (
       <AppWrapper>

@@ -44,5 +44,5 @@ export function formatMilliseconds(ms: number, withoutTime?: boolean): string {
 
   return withoutTime
     ? `${day} ${month} ${year}`
-    : `${day} ${month} ${year}, ${hours}:${formattedMinutes}${timePeriod}`
+    : `${day} ${month} ${year}, ${hours}:${formattedMinutes} ${timePeriod}`
 }
