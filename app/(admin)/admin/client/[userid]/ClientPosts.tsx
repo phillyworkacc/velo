@@ -66,15 +66,17 @@ export default function ClientPosts () {
       </>)}
 
       {(client.posts.length < 1) && (<div className="text-xxs grey-4">No posts</div>)}
-      {client.posts.map((post, index) => (
-         <Card key={index} className="pd-2 pdx-2" maxWidth="600px" analyticsCard>
-            <CustomIcon url={`/platforms/${post.platform.toLowerCase()}.png`} size={40} />
-            <div className="text-s bold-600 pd-1">
-               @{client.platforms.find(pltFm => pltFm.platform == post.platform)?.username!}
-            </div>
-            <Link href={post.link} target="_blank" className="text-xxs mb-1 accent-color">Click to view {post.platform} post</Link>
-            <div className="text-xxxs grey-4 full">Posted on {formatMilliseconds(Date.now()).split(',')[0]}</div>
-         </Card>
-      ))}
+      <div className="text-s dfb gap-10 wrap">
+         {client.posts.map((post, index) => (
+            <Card key={index} className="pd-2 pdx-2" maxWidth="600px" analyticsCard>
+               <CustomIcon url={`/platforms/${post.platform.toLowerCase()}.png`} size={40} />
+               <div className="text-s bold-600 pd-1">
+                  @{client.platforms.find(pltFm => pltFm.platform == post.platform)?.username!}
+               </div>
+               <Link href={post.link} target="_blank" className="text-xxs mb-1 accent-color">Click to view {post.platform} post</Link>
+               <div className="text-xxxs grey-4 full">Posted on {formatMilliseconds(Date.now()).split(',')[0]}</div>
+            </Card>
+         ))}
+      </div>
    </>)
 }
