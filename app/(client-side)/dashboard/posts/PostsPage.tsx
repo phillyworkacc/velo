@@ -99,7 +99,7 @@ function ClientPostLister ({ clientPosts }: { clientPosts: ClientPostsDateObject
    return (<div className="text-s dfb column gap-10 w-full">
       {dateKeys.map((dateKey, index) => (<div key={index}>
          <div className="text-m bold-700 mb-05">Posts on {dateKey}</div>
-         <div className="text-xxs grey-4 mb-1">{clientPosts[dateKey].dateRange}</div>
+         <div className="text-xxs grey-4 mb-15">{clientPosts[dateKey].dateRange}</div>
 
          <div className="text-s w-full wrap dfb gap-10">
             {clientPosts[dateKey].clientPosts.map((clientPost, index) => (
@@ -115,7 +115,7 @@ function ClientPostLister ({ clientPosts }: { clientPosts: ClientPostsDateObject
                </Link>
             ))}
          </div>
-
+         <br /><br />
       </div>))}
    </div>);
 }

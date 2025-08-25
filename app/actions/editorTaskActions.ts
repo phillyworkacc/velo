@@ -127,7 +127,7 @@ export async function getEditorSubmissionForTask (userid: string, editorTaskId: 
       const editor = await EditorsDb.findOne({ userid });
       return editor.tasksCompleted.find((tasksComp: EditorTaskStatus) => (tasksComp.taskId == editorTaskId))
          ? JSON.parse(JSON.stringify(editor.tasksCompleted.find((tasksComp: EditorTaskStatus) => (tasksComp.taskId == editorTaskId))))
-         : null;
+         : false;
    } catch (err) {
       return null;
    }
